@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}All Movies{% endblock title %}
+
+{% block content %}
+    <h1>All Movies</h1>
+    <hr/>
+    {% if tag %}
+        <h2>Posts tagged with "{{ tag.name }}"</h2>
+    {% endif %}
+    {% include 'components/movies.html' with movies=movies %}
+    {% include "components/pagination.html" with page=page_obj %}
+{% endblock content %}

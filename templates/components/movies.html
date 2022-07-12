@@ -1,0 +1,21 @@
+<div class="row row-cols-1 row-cols-md-5 g-4">
+    {% for movie in movies %}
+        <div class="col">
+            <div class="card">
+                <img src="{{ movie.poster.url }}" height="200px" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{ movie.name }}</h5>
+                    <p class="card-text">{{ movie.release_date }}<br/>
+                        {% for tag in movie.tags.all %}
+                            <a href="{% url "movie:movie_by_tag" tag.slug %}">
+                                {{ tag.name }}
+                            </a>
+                            {% if not forloop.last %}, {% endif %}
+                        {% endfor %}
+                    </p>
+                    <a class="btn btn-primary" href="{{ movie.get_absolute_url }}">Details</a>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
